@@ -15,5 +15,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 __pkg_name__ = 'CySecureTools'
-__version__ = '6.1.0'
+__version__ = '6.1.1'
 __pkg_short_name__ = 'C'
