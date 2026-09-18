@@ -19,7 +19,7 @@ import logging
 from pathlib import Path
 
 import lief
-from lief.ELF import SEGMENT_TYPES
+from lief.ELF import Segment
 from cryptography.hazmat.primitives.hashes import Hash, SHA256
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15
 from cryptography.hazmat.primitives.asymmetric.utils import Prehashed
@@ -232,8 +232,8 @@ class SignToolXMC7xxx(SignToolBase):
         for segment in elf.segments:
             p_addr = segment.physical_address
             p_size = segment.physical_size
-            if segment.type in [SEGMENT_TYPES.LOAD,
-                                SEGMENT_TYPES.ARM_UNWIND] and p_size > 0:
+            if segment.type in [Segment.TYPE.LOAD,
+                                Segment.TYPE.ARM_EXIDX] and p_size > 0:
                 if start <= p_addr < end:
                     for i, b in enumerate(segment.content):
                         if p_addr - start + i >= len(payload):
